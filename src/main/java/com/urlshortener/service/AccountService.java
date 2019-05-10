@@ -1,5 +1,6 @@
 package com.urlshortener.service;
 
+import com.urlshortener.domain.Account;
 import com.urlshortener.domain.request.AccountRequest;
 import org.springframework.stereotype.Service;
 
@@ -7,8 +8,17 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Account Service
+ * Business Logic used in our AccountController
+ *
+ * @author  Marin Puizina
+ */
 @Service
 public class AccountService {
+
+    private static final String ACCOUNT_ID_IS_VALID = "Account ID is valid.";
+    private static final String ACCOUNT_ID_ALREADY_EXISTS = "Account with that ID already exists.";
 
     public static Map<String, String> validationValues;
 
@@ -20,18 +30,17 @@ public class AccountService {
 
     public boolean isAccountValid(AccountRequest accountRequest) {
 
-        System.out.println("ACCOUNT ID: " + accountRequest.getAccountId());
         if(validationValues.get(accountRequest.getAccountId()) != null) {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
 
     }
 
     public String generatePassword() {
 
-        String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzžABCDĐEFGHIJKLMNOPQRSTUVWXYZ";
         SecureRandom RANDOM = new SecureRandom();
 
         StringBuilder sb = new StringBuilder();
@@ -39,6 +48,22 @@ public class AccountService {
             sb.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
         }
         return sb.toString();
+
+    }
+
+    public void generateResponse(Account account, boolean isValid) {
+
+        if(isValid) {
+
+            account.setSuccess(isValid);
+            account.setDescription(ACCOUNT_ID_IS_VALID);
+            account.setPassword(generatePassword());
+
+        } else {
+
+            account.setSuccess(isValid);
+            account.setDescription(ACCOUNT_ID_ALREADY_EXISTS);
+        }
 
     }
 

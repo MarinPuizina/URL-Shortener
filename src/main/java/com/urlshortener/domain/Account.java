@@ -2,6 +2,11 @@ package com.urlshortener.domain;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Used for mapping JSON from AccountController POST request's Response
+ *
+ * @author  Marin Puizina
+ */
 @Component
 public class Account {
 

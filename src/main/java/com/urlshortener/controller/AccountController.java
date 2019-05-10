@@ -6,14 +6,21 @@ import com.urlshortener.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Account Controller
+ * Send JSON in RequestBody of format: { "accountId" : "String" }
+ * Rensponse returns JSON
+ *
+ * @author  Marin Puizina
+ */
 @RestController
 public class AccountController {
-
+    
     Account account;
     AccountService accountService;
     AccountRequest accountRequest; //Check if this is needed
 
-
+    // Dependency injection
     @Autowired
     public AccountController(Account account, AccountService accountService, AccountRequest accountRequest) {
         this.account = account;
@@ -26,16 +33,10 @@ public class AccountController {
     public Account account(@RequestBody AccountRequest accountRequest) {
 
         if(accountService.isAccountValid(accountRequest)) {
-
-            account.setSuccess(false);
-            account.setDescription("Account with that ID already exists.");
+            accountService.generateResponse(account, true);
 
         } else {
-
-            account.setSuccess(true);
-            account.setDescription("Account ID is valid.");
-            account.setPassword(accountService.generatePassword());
-
+            accountService.generateResponse(account, false);
         }
 
         return account;
