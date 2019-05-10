@@ -1,6 +1,6 @@
 package com.urlshortener.service;
 
-import com.urlshortener.domain.Account;
+import com.urlshortener.domain.response.AccountResponse;
 import com.urlshortener.domain.request.AccountRequest;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Account Service
+ * AccountResponse Service
  * Business Logic used in our AccountController
  *
  * @author  Marin Puizina
@@ -17,8 +17,8 @@ import java.util.Map;
 @Service
 public class AccountService {
 
-    private static final String ACCOUNT_ID_IS_VALID = "Account ID is valid.";
-    private static final String ACCOUNT_ID_ALREADY_EXISTS = "Account with that ID already exists.";
+    private static final String ACCOUNT_ID_IS_VALID = "AccountResponse ID is valid.";
+    private static final String ACCOUNT_ID_ALREADY_EXISTS = "AccountResponse with that ID already exists.";
 
     public static Map<String, String> validationValues;
 
@@ -51,7 +51,7 @@ public class AccountService {
 
     }
 
-    public void generateResponse(Account account, boolean isValid) {
+    public void generateResponse(AccountResponse account, boolean isValid) {
 
         if(isValid) {
 

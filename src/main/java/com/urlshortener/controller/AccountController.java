@@ -1,13 +1,13 @@
 package com.urlshortener.controller;
 
-import com.urlshortener.domain.Account;
+import com.urlshortener.domain.response.AccountResponse;
 import com.urlshortener.domain.request.AccountRequest;
 import com.urlshortener.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Account Controller
+ * AccountResponse Controller
  * Send JSON in RequestBody of format: { "accountId" : "String" }
  * Rensponse returns JSON
  *
@@ -16,32 +16,32 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class AccountController {
 
-    Account account;
+    AccountResponse accountResponse;
     AccountService accountService;
     AccountRequest accountRequest; //Check if this is needed
 
-    // Dependency injection
+    // Dependency Injection
     @Autowired
-    public AccountController(Account account, AccountService accountService, AccountRequest accountRequest) {
-        this.account = account;
+    public AccountController(AccountResponse accountResponse, AccountService accountService, AccountRequest accountRequest) {
+        this.accountResponse = accountResponse;
         this.accountService = accountService;
         this.accountRequest = accountRequest;
     }
 
 
     @RequestMapping(value = "/account", method = RequestMethod.POST)
-    public Account account(@RequestBody AccountRequest accountRequest) {
+    public AccountResponse account(@RequestBody AccountRequest accountRequest) {
 
         if(accountService.isAccountValid(accountRequest)) {
 
-            accountService.generateResponse(account, true);
-            accountService.storeAccountIdAndPassword(accountRequest.getAccountId(), account.getPassword());
+            accountService.generateResponse(accountResponse, true);
+            accountService.storeAccountIdAndPassword(accountRequest.getAccountId(), accountResponse.getPassword());
 
         } else {
-            accountService.generateResponse(account, false);
+            accountService.generateResponse(accountResponse, false);
         }
 
-        return account;
+        return accountResponse;
 
     }
 

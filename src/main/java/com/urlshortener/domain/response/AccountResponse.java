@@ -1,4 +1,4 @@
-package com.urlshortener.domain;
+package com.urlshortener.domain.response;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @author  Marin Puizina
  */
 @Component
-public class Account {
+public class AccountResponse {
 
     private String password;
     private String description;
@@ -42,7 +42,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account{" +
+        return "AccountResponse{" +
                 "password='" + password + '\'' +
                 ", description='" + description + '\'' +
                 ", success=" + success +
