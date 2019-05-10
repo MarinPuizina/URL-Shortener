@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class AccountController {
-    
+
     Account account;
     AccountService accountService;
     AccountRequest accountRequest; //Check if this is needed
@@ -33,7 +33,9 @@ public class AccountController {
     public Account account(@RequestBody AccountRequest accountRequest) {
 
         if(accountService.isAccountValid(accountRequest)) {
+
             accountService.generateResponse(account, true);
+            accountService.storeAccountIdAndPassword(accountRequest.getAccountId(), account.getPassword());
 
         } else {
             accountService.generateResponse(account, false);

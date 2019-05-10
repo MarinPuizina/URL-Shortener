@@ -59,11 +59,23 @@ public class AccountService {
             account.setDescription(ACCOUNT_ID_IS_VALID);
             account.setPassword(generatePassword());
 
+
         } else {
 
             account.setSuccess(isValid);
             account.setDescription(ACCOUNT_ID_ALREADY_EXISTS);
         }
+
+    }
+
+    /**
+     *
+     * @param accountId Send from RequestBody
+     * @param password pasword
+     */
+    public void storeAccountIdAndPassword(String accountId, String password) {
+
+        validationValues.put(accountId, password);
 
     }
 
