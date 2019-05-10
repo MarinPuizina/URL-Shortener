@@ -18,14 +18,12 @@ public class AccountController {
 
     AccountResponse accountResponse;
     AccountService accountService;
-    AccountRequest accountRequest; //Check if this is needed
 
     // Dependency Injection
     @Autowired
-    public AccountController(AccountResponse accountResponse, AccountService accountService, AccountRequest accountRequest) {
+    public AccountController(AccountResponse accountResponse, AccountService accountService) {
         this.accountResponse = accountResponse;
         this.accountService = accountService;
-        this.accountRequest = accountRequest;
     }
 
 

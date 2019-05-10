@@ -14,14 +14,12 @@ public class RegisterController {
 
     RegisterResponse registerResponse;
     RegisterRequest registerRequest;
-    RegisterService registerService;
 
     // Dependency Injection
     @Autowired
-    public RegisterController(RegisterResponse registerResponse, RegisterRequest registerRequest, RegisterService registerService) {
+    public RegisterController(RegisterResponse registerResponse, RegisterRequest registerRequest) {
         this.registerResponse = registerResponse;
         this.registerRequest = registerRequest;
-        this.registerService = registerService;
     }
 
 
