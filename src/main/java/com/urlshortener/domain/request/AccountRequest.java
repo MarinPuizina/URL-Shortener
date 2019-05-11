@@ -2,6 +2,8 @@ package com.urlshortener.domain.request;
 
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Used for mapping JSON from AccountController POST request's RequestBody
  *
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AccountRequest {
 
+    @NotNull
     private String accountId;
 
 

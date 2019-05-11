@@ -6,6 +6,8 @@ import com.urlshortener.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * AccountResponse Controller
  * Send JSON in RequestBody of format: { "accountId" : "String" }
@@ -32,7 +34,7 @@ public class AccountController {
 
 
     @RequestMapping(value = "/account", method = RequestMethod.POST)
-    public AccountResponse account(@RequestBody AccountRequest accountRequest) {
+    public AccountResponse account(@Valid @RequestBody AccountRequest accountRequest) {
 
         if(accountService.isAccountValid(accountRequest)) {
 

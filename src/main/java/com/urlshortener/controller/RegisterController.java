@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class RegisterController {
 
@@ -24,7 +26,7 @@ public class RegisterController {
 
     @Secured("ROLE_USER")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public RegisterResponse register(@RequestBody RegisterRequest registerRequest) {
+    public RegisterResponse register(@Valid @RequestBody RegisterRequest registerRequest) {
 
         // registerService.fillMaps(registerRequest, registerResponse);
 

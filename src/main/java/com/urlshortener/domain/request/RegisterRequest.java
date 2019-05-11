@@ -2,10 +2,14 @@ package com.urlshortener.domain.request;
 
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
+
 @Component
 public class RegisterRequest {
 
+    @NotNull
     private String url;
+
     private Integer redirectType;
 
 
