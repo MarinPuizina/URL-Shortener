@@ -4,6 +4,7 @@ import com.urlshortener.domain.response.AccountResponse;
 import com.urlshortener.domain.request.AccountRequest;
 import com.urlshortener.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,8 +30,6 @@ public class AccountController {
         this.accountRequest = accountRequest;
         this.accountService = accountService;
     }
-
-
 
 
     @RequestMapping(value = "/account", method = RequestMethod.POST)
