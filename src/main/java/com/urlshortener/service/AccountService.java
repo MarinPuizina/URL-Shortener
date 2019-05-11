@@ -40,7 +40,7 @@ public class AccountService {
 
     public String generatePassword() {
 
-        String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzžABCDĐEFGHIJKLMNOPQRSTUVWXYZ";
+        String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         SecureRandom RANDOM = new SecureRandom();
 
         StringBuilder sb = new StringBuilder();

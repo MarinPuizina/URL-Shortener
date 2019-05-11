@@ -17,14 +17,18 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
 
     AccountResponse accountResponse;
+    AccountRequest accountRequest;
     AccountService accountService;
 
     // Dependency Injection
     @Autowired
-    public AccountController(AccountResponse accountResponse, AccountService accountService) {
+    public AccountController(AccountResponse accountResponse, AccountRequest accountRequest, AccountService accountService) {
         this.accountResponse = accountResponse;
+        this.accountRequest = accountRequest;
         this.accountService = accountService;
     }
+
+
 
 
     @RequestMapping(value = "/account", method = RequestMethod.POST)
