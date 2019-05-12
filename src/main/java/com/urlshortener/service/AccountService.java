@@ -41,6 +41,7 @@ public class AccountService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     /**
      *
      * @return String type - randomly generated 8 alphanumeric characters
@@ -80,7 +81,7 @@ public class AccountService {
     }
 
     /**
-     *
+     * Using BCryptPasswordEncoder (see SecurityConfig)
      * @return encrypted password
      */
     public String passwordEncryption(String password) {

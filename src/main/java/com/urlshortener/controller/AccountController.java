@@ -1,8 +1,7 @@
 package com.urlshortener.controller;
 
-import com.urlshortener.domain.Account;
-import com.urlshortener.domain.response.AccountResponse;
 import com.urlshortener.domain.request.AccountRequest;
+import com.urlshortener.domain.response.AccountResponse;
 import com.urlshortener.domain.response.AccountRest;
 import com.urlshortener.repository.AccountRepository;
 import com.urlshortener.service.AccountService;
@@ -11,13 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
 /**
  * AccountResponse Controller
- * Send JSON in RequestBody of format: { "accountId" : "String" }
+ * For account request - Send JSON in RequestBody e.g.: { "accountId" : "String" }
  * Rensponse returns JSON
  *
  * @author  Marin Puizina
@@ -30,7 +32,6 @@ public class AccountController {
     AccountResponse accountResponse;
     AccountRequest accountRequest;
     AccountService accountService;
-
     AccountRepository accountRepository;
 
     // Dependency Injection
@@ -55,7 +56,6 @@ public class AccountController {
         if(accountService.isAccountValid(accountRepository, accountRequest)) {
 
             String password = accountService.generatePassword();
-
             logger.info("Generated password = " + password);
 
             accountService.storeAccountInDatabase(accountRepository, accountRequest, accountService.passwordEncryption(password));
