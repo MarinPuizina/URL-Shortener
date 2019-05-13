@@ -21,13 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.inMemoryAuthentication()
-                .withUser("marin")
-                .password("{noop}m123")
-                .roles("USER")
-            .and()
-                .withUser("admin")
-                .password("{noop}admin")
-                .roles("ADMIN");
+                .withUser(SeurityConstants.FIRST_USER).password(SeurityConstants.FIRST_USER_PASSWORD).roles(SeurityConstants.USER_ROLE)
+                .and()
+                .withUser(SeurityConstants.SECOND_USER).password(SeurityConstants.SECOND_USER_PASSWORD).roles(SeurityConstants.ADMIN_ROLE);
 
     }
 
@@ -36,10 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf().disable().authorizeRequests()
-                .antMatchers("/account").permitAll()
-                .antMatchers("/console").permitAll()
-                .antMatchers("/console/**").permitAll()
-                .antMatchers("/register").hasRole("USER")
+                .antMatchers(SeurityConstants.ACCOUNT_URL).permitAll()
+                .antMatchers(SeurityConstants.CONSOLE_URL).permitAll()
+                .antMatchers(SeurityConstants.CONSOLE_DASH_URL).permitAll()
+                .antMatchers(SeurityConstants.REGISTER_URL).hasRole(SeurityConstants.USER_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

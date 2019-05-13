@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -27,9 +28,13 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public RegisterResponse register(@Valid @RequestBody RegisterRequest registerRequest) {
+    public RegisterResponse register(HttpServletRequest request, @Valid @RequestBody RegisterRequest registerRequest) {
 
         // registerService.fillMaps(registerRequest, registerResponse);
+
+
+        System.out.println(request.getHeaderNames());
+
 
         registerService.generateShortUrl(registerResponse);
 
