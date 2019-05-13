@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 /**
- * AccountResponse Controller
- * For account request - Send JSON in RequestBody e.g.: { "accountId" : "String" }
+ * AccountResponse
+ * For account request - Send JSON in RequestBody
+ * JSON e.g.: {
+ *              "accountId" : "String"
+ *            }
+ *
  * Rensponse returns JSON
  *
  * @author  Marin Puizina
@@ -49,10 +53,12 @@ public class AccountController {
 
         logger.info("AccountId = " + accountRequest.getAccountId());
 
+        // If user didn't send accountId in request body
         if(accountRequest.getAccountId() == null)
             return new ResponseEntity<AccountRest>(new AccountRest(), HttpStatus.BAD_REQUEST);
 
 
+        // If user was found in database
         if(accountService.isAccountValid(accountRepository, accountRequest)) {
 
             String password = accountService.generatePassword();
@@ -66,6 +72,7 @@ public class AccountController {
 
         }
 
+        // If user wasn't found in database
         return new ResponseEntity<AccountRest>(accountService.createAccountEntity(null, false), HttpStatus.OK);
 
     }

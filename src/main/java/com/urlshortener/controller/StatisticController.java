@@ -13,6 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * StatisticController
+ * For statistic request - Send accountId as parameter in url
+ * Returns statistic for account
+ * e.g.: http://localhost:8080/statistic/{accountId}
+ *
+ * Rensponse returns JSON
+ *
+ * @author  Marin Puizina
+ */
 @RestController
 public class StatisticController {
 
@@ -21,6 +31,7 @@ public class StatisticController {
     StatisticService statisticService;
     StatisticRepository statisticRepository;
 
+    // Dependency Injection
     @Autowired
     public StatisticController(StatisticService statisticService, StatisticRepository statisticRepository) {
         this.statisticService = statisticService;

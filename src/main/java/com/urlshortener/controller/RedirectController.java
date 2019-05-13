@@ -17,6 +17,14 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * RedirectController
+ * For redirect request - Call URL with another URL as parameter in browser, increments hits for that link
+ * Redirects to specific site
+ * e.g.: http://localhost:8080/redirect?shortUrl={URL}
+ *
+ * @author  Marin Puizina
+ */
 @Controller
 public class RedirectController {
 
@@ -27,6 +35,7 @@ public class RedirectController {
     RedirectService redirectService;
     StatisticJpaRepository statisticJpaRepository;
 
+    // Dependency Injection
     @Autowired
     public RedirectController(StatisticRepository statisticRepository, RegisterRepository registerRepository, RedirectService redirectService, StatisticJpaRepository statisticJpaRepository) {
         this.statisticRepository = statisticRepository;

@@ -6,8 +6,6 @@ import com.urlshortener.domain.response.RegisterRest;
 import com.urlshortener.repository.AccountRepository;
 import com.urlshortener.repository.RegisterRepository;
 import com.urlshortener.service.RegisterService;
-import com.urlshortener.service.ServiceConstants;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * RegisterController
+ * For register request - Send JSON with request body parameters 'url' and redirectType
+ * Returns shorten URL
+ * JSON e.g.: {
+ *              "url": "https://www.google.com/",
+ *              "redirectType": 301
+ *            }
+ *
+ * Rensponse returns JSON
+ *
+ * @author  Marin Puizina
+ */
 @RestController
 public class RegisterController {
 
@@ -46,35 +54,7 @@ public class RegisterController {
         this.registerRepository = registerRepository;
         this.accountRepository = accountRepository;
     }
-    /*
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public RegisterResponse register(HttpServletRequest request, @Valid @RequestBody RegisterRequest registerRequest) {
 
-        // registerService.fillMaps(registerRequest, registerResponse);
-        Map<String, Object> returnValue = new HashMap<>();
-
-        Enumeration<String> hearderNames = request.getHeaderNames();
-        while(hearderNames.hasMoreElements()) {
-            String headerName = hearderNames.nextElement();
-            returnValue.put(headerName, request.getHeader(headerName));
-        }
-
-        if(returnValue.containsKey("authorization")) {
-            System.out.println(returnValue.get("authorization"));
-            String decodedString = new String(Base64.decodeBase64("bWFyaW46bTEyMw=="));
-            System.out.println(decodedString);
-        }
-
-        // TODO - REFACTOR THE CODE, MAKE LOGIC FOR STORING URLs
-        // TODO - MAKE PASSWORD VALIDATOR, MAKE CUSTOM RESPONSE STATUSES
-
-        System.out.println(returnValue);
-
-
-        registerService.generateShortUrl(registerResponse);
-
-        return registerResponse;
-    }*/
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<RegisterRest> register(HttpServletRequest request, @Valid @RequestBody RegisterRequest registerRequest) {
@@ -96,6 +76,7 @@ public class RegisterController {
         */
 
         String url = registerRequest.getUrl();
+        // Generating shorten URL for storing in database
         String shortUrl = registerService.generateShortUrl(registerResponse);
 
         registerService.storeRegisterInDatabase(registerRepository, url, shortUrl);

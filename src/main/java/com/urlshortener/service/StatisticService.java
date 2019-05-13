@@ -23,9 +23,6 @@ public class StatisticService {
 
     public Map<String, Long> getAccessedUrlAndHitsCounter(StatisticRepository statisticRepository, String accountId, Map<String, Long> statisticValues) {
 
-        //Statistic stats = statisticRepository.findStatisticByAccountId(accountId);
-        //Iterable<Statistic> statsList = statisticRepository.findAllbyAccountId(accountId);
-
         List<Statistic> statsValues = statisticRepository.findByAccountId(accountId);
         logger.info("lista = " + statsValues);
 
