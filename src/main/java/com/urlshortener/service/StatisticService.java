@@ -33,7 +33,6 @@ public class StatisticService {
             return null;
         }
 
-
         for (Statistic stats : statsValues) {
 
             statisticValues.put(stats.getUrl(), stats.getHits());

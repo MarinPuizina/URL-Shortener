@@ -8,6 +8,8 @@ public class SeurityConstants {
     public static final String CONSOLE_DASH_URL = "/console/**";
     public static final String REGISTER_URL = "/register";
     public static final String STATISTIC_ACCOUNTID_URL = "/statistic/**";
+    public static final String REDIRECT_URL = "/redirect";
+    public static final String REDIRECT_DASH_URL = "/redirect/**";
 
     // ROLES
     public static final String USER_ROLE = "USER";

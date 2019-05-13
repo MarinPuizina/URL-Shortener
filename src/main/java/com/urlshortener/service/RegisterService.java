@@ -163,7 +163,7 @@ public class RegisterService {
      */
     public void storeRegisterInDatabase(RegisterRepository registerRepository, String url, String shortUrl) {
 
-        registerRepository.save(new Register(url, shortUrl));
+        registerRepository.save(new Register(shortUrl, url));
 
     }
 

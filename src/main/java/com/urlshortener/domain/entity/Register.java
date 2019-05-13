@@ -11,7 +11,7 @@ public class Register {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String accountId;
+    private String shortUrl;
     private String url;
 
 
@@ -20,7 +20,7 @@ public class Register {
     }
 
     public Register(String accountId, String url) {
-        this.accountId = accountId;
+        this.shortUrl = accountId;
         this.url = url;
     }
 
@@ -33,12 +33,12 @@ public class Register {
         this.id = id;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public String getShortUrl() {
+        return shortUrl;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
     }
 
     public String getUrl() {
@@ -54,7 +54,7 @@ public class Register {
     public String toString() {
         return "Register{" +
                 "id=" + id +
-                ", accountId='" + accountId + '\'' +
+                ", shortUrl='" + shortUrl + '\'' +
                 ", url='" + url + '\'' +
                 '}';
     }
