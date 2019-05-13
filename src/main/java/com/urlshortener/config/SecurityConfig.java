@@ -35,10 +35,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SeurityConstants.ACCOUNT_URL).permitAll()
                 .antMatchers(SeurityConstants.CONSOLE_URL).permitAll()
                 .antMatchers(SeurityConstants.CONSOLE_DASH_URL).permitAll()
+                .antMatchers(SeurityConstants.STATISTIC_ACCOUNTID_URL).permitAll()
                 .antMatchers(SeurityConstants.REGISTER_URL).hasRole(SeurityConstants.USER_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
+
+        // TODO EDIT /STATISTIC AUTHORIZATION
 
         // NEEDED TO BE ABLE TO ACCESS H2 CONSOLE
         http.headers().frameOptions().sameOrigin();

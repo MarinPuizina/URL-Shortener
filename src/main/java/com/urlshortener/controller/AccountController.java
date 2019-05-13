@@ -58,7 +58,9 @@ public class AccountController {
             String password = accountService.generatePassword();
             logger.info("Generated password = " + password);
 
-            accountService.storeAccountInDatabase(accountRepository, accountRequest, accountService.passwordEncryption(password));
+            // BCrypt or Base64
+            accountService.storeAccountInDatabase(accountRepository, accountRequest, accountService.passwordEncoding(password));
+            //accountService.storeAccountInDatabase(accountRepository, accountRequest, accountService.passwordEncryption(password));
 
             return new ResponseEntity<AccountRest>(accountService.createAccountEntity(password, true), HttpStatus.OK);
 

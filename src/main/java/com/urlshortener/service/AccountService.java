@@ -1,9 +1,10 @@
 package com.urlshortener.service;
 
-import com.urlshortener.domain.Account;
+import com.urlshortener.domain.entity.Account;
 import com.urlshortener.domain.request.AccountRequest;
 import com.urlshortener.domain.response.AccountRest;
 import com.urlshortener.repository.AccountRepository;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * AccountResponse Service
- * Business Logic used in our AccountController
+ * Business Logic used in AccountController
  *
  * @author  Marin Puizina
  */
@@ -28,14 +27,6 @@ public class AccountService {
     public static final String USER_ROLE = "USER";
     private static final String ACCOUNT_ID_IS_VALID = "AccountResponse ID is valid.";
     private static final String ACCOUNT_ID_ALREADY_EXISTS = "AccountResponse with that ID already exists.";
-
-    public static Map<String, String> validationValues;
-
-    static {
-        validationValues = new HashMap<>();
-        validationValues.put("marin", "m123");
-        validationValues.put("admin", "admin");
-    }
 
 
     @Autowired
@@ -82,11 +73,24 @@ public class AccountService {
 
     /**
      * Using BCryptPasswordEncoder (see SecurityConfig)
+     * @param password password to encode
      * @return encrypted password
      */
     public String passwordEncryption(String password) {
 
         return passwordEncoder.encode(password);
+
+    }
+
+    /**
+     * Using Base64 encoding
+     * @param password password to encode
+     * @return Base64 encoded password
+     */
+    public String passwordEncoding(String password) {
+
+        Base64 base64 = new Base64();
+        return new String(base64.encode(password.getBytes()));
 
     }
 

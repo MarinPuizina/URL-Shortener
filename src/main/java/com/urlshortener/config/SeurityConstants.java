@@ -7,6 +7,7 @@ public class SeurityConstants {
     public static final String CONSOLE_URL = "/console";
     public static final String CONSOLE_DASH_URL = "/console/**";
     public static final String REGISTER_URL = "/register";
+    public static final String STATISTIC_ACCOUNTID_URL = "/statistic/**";
 
     // ROLES
     public static final String USER_ROLE = "USER";
