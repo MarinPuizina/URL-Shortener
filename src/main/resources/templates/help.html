@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Help</title>
+</head>
+<body>
+
+    <h1>Help Page</h1>
+
+    <p>DATABASE: If you want to see the data stored in H2 database, use this link. (No password needed)</p>
+    <p>http://localhost:8080/console/</p>
+    <p></p>
+    <p>This project is using basic authentication, with in memory users. For testing purposes we are using
+    User: marin Password: m123</p>
+    <p>Or as a header: Key: Authorization Value: Basic bWFyaW46bTEyMw==</p>
+    <p>For testing, follow these steps and use Postman, or some other similar tool.</p>
+
+    <h2>1) Account</h2>
+    <p>This is a POST request. Therefore, you will ned to select POST option in your Postman.</p>
+    <p>Headers: Key: Content-Type Value: application/json</p>
+    <p>URL: http://localhost:8080/register</p>
+    <p>Body: you will need to use JSON with key: "accountId", and value: e.g. "marin"</p>
+    <p>e.g.: t{
+        "accountId" : "marin"
+        }</p>
+
+    <h2>2) Register</h2>
+    <p>This is a POST request.</p>
+    <p>Headers: Key: Content-Type Value: application/json, Key: Authorization Value: Basic bWFyaW46bTEyMw==</p>
+    <p>URL: http://localhost:8080/register</p>
+    <p>Body: you will need to use JSON with keys: "accountId", "redirectType" and value: e.g. "https://www.google.com/", 301</p>
+    <p>e.g.: {
+        "url": "https://www.google.com/",
+        "redirectType": 301
+        }</p>
+    <p>Response: {
+        "url": "http://short.com/IhyiJo"
+        }  copy the value from response and use it in next step</p>
+
+    <h2>3) Redirect</h2>
+    <p>This is a GET request.</p>
+    <p>No need to use Postman for this one. Just call URL in your browser.</p>
+    <p>URL: http://localhost:8080/redirect?shortUrl={SHORT_URL}</p>
+    <p>e.g.: http://localhost:8080/redirect?shortUrl=http://short.com/IhyiJo</p>
+
+    <h2>4) Statistic</h2>
+    <p>Since we are using in memory users, this option will only return values if we provide "marin" as {accountId}</p>
+    <p>This is a POST request.</p>
+    <p>Headers: Key: Content-Type Value: application/json, Key: Authorization Value: Basic bWFyaW46bTEyMw==</p>
+    <p>URL: http://localhost:8080/statistic/{accountId}</p>
+    <p>e.g.: http://localhost:8080/statistic/marin</p>
+    <p>Response: JSON with values that are store in database.</p>
+
+</body>
+</html>

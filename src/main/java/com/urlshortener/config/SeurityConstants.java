@@ -5,11 +5,13 @@ public class SeurityConstants {
     // URLs
     public static final String ACCOUNT_URL = "/account";
     public static final String CONSOLE_URL = "/console";
-    public static final String CONSOLE_DASH_URL = "/console/**";
+    public static final String CONSOLE_SLASH_URL = "/console/**";
     public static final String REGISTER_URL = "/register";
     public static final String STATISTIC_ACCOUNTID_URL = "/statistic/**";
     public static final String REDIRECT_URL = "/redirect";
-    public static final String REDIRECT_DASH_URL = "/redirect/**";
+    public static final String REDIRECT_SLASH_URL = "/redirect/**";
+    public static final String HELP_URL = "/help";
+    public static final String HELP_SLASH_URL = "/help/**";
 
     // ROLES
     public static final String USER_ROLE = "USER";

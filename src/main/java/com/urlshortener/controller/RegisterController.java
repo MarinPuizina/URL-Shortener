@@ -22,6 +22,7 @@ import javax.validation.Valid;
 /**
  * RegisterController
  * For register request - Send JSON with request body parameters 'url' and redirectType
+ * Add Authorization header e.g.: key: Authorization , value: Basic bWFyaW46bTEyMw==
  * Returns shorten URL
  * JSON e.g.: {
  *              "url": "https://www.google.com/",
@@ -77,7 +78,7 @@ public class RegisterController {
 
         String url = registerRequest.getUrl();
         // Generating shorten URL for storing in database
-        String shortUrl = registerService.generateShortUrl(registerResponse);
+        String shortUrl = registerService.generateShortUrl();
 
         registerService.storeRegisterInDatabase(registerRepository, url, shortUrl);
 

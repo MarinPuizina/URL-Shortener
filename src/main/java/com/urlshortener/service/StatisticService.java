@@ -21,12 +21,19 @@ public class StatisticService {
     Logger logger = LoggerFactory.getLogger(StatisticService.class);
 
 
+    /**
+     *
+     * @param statisticRepository used to query the database
+     * @param accountId used to query the database
+     * @param statisticValues used to fill this map with Statistic values from database
+     * @return map with values
+     */
     public Map<String, Long> getAccessedUrlAndHitsCounter(StatisticRepository statisticRepository, String accountId, Map<String, Long> statisticValues) {
 
         List<Statistic> statsValues = statisticRepository.findByAccountId(accountId);
         logger.info("lista = " + statsValues);
 
-        if (statsValues == null) {
+        if (statsValues == null || statsValues.isEmpty()) {
             return null;
         }
 
