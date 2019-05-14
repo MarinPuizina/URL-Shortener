@@ -1,9 +1,12 @@
 package com.urlshortener.domain.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class AccountRest {
 
     private Boolean success;
     private String description;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String password;
 
 
